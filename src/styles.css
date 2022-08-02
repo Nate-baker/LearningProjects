@@ -1,4 +1,85 @@
+html {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+}
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+.background {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: inset 0px 0px 10px 1px black;
+  background: linear-gradient(#22c8ba, #1fb2a6);
+}
+.info-box {
+  position: fixed;
+  border-style: solid;
+  border-width: 1vh 1vw 1vh 1vw;
+  border-radius: 45px 45px 45px 45px;
+  top: 4vh;
+  left: 9vw;
+  width: 80vw;
+  height: 90vh;
+  background: linear-gradient(#1a998e, #157971);
+}
+.title {
+  font-size: 5rem;
+}
+.account-info {
+  width: 100%;
+  height: 65vh;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  bottom: 0px;
+}
+input {
+  box-sizing: border-box;
+  margin-inline: auto;
+  margin-top: 2.5vh;
+  font-size: 2.5rem;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  display: block;
+  height: 5rem;
+  width: 45rem;
+  border: 4px solid black;
+  border-radius: 15px;
+}
+input:first-of-type {
+  margin-top: -5vh;
+}
+
+input:focus {
+  outline: none;
+  background-color: #e8fefc;
+}
+button {
+  height: 4vh;
+  font-size: 2.5rem;
+  border: 0.25rem solid black;
+  border-radius: 10px;
+  outline: none;
+  margin-inline: auto;
+  margin-top: 7.5rem;
+  margin-bottom: 5rem;
+  width: 30rem;
+  box-shadow: 0.25rem 0.25rem 1rem 0.05rem black;
+}
+button:hover {
+  transition-duration: 0.5s;
+  transform: scale(1.25);
+  cursor: pointer;
+  background-color: #e8fefc;
+}
+button:active {
+  transition-duration: 0.1s;
+  box-shadow: 0.25rem 0.25rem 1rem 0.5rem black;
 }
