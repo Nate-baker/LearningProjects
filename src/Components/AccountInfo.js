@@ -4,7 +4,8 @@ export default function AccountInfo() {
       <input type="text" placeholder="username"></input>
       <input htmlFor="email" type="email" placeholder="email"></input>
       <input type="password" placeholder="password"></input>
-      <button>Create Account</button>
+      <button id="create-account">Create Account</button>
+      <button id="login-account">Already have an account? Login Here</button>
     </div>
   );
 }
