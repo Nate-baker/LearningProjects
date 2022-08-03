@@ -45,9 +45,9 @@ export function addUserToDB(userData, UID) {
   const email = userData.email;
   const password = userData.password;
 
-  writeDBData(`/users/${UID}`, {
-    username: username,
+  writeDBData(`users/${username}`, {
     email: email,
+    UID: UID,
     password: password
   });
 }

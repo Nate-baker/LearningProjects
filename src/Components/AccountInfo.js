@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { signIn, createUser } from "./Auth";
 
-export default function AccountInfo() {
+export default function AccountInfo(props) {
   const [userData, setUserData] = useState({});
 
   function changeUserData(el) {

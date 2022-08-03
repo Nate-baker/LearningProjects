@@ -8,6 +8,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword
 } from "firebase/auth";
+import App from "../App";
+
 //Setup firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyB5j6O2L0SZujZc61syiOR-AwtxZsXMx4U",
@@ -23,8 +25,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+//<--------------------------->
+//<--------------------------->
+//<--------------------------->
+//<--------------------------->
+
 export function createUser(info) {
   const auth = getAuth();
+  const username = info.username;
   const email = info.email;
   const password = info.password;
   let UID;
@@ -33,6 +41,7 @@ export function createUser(info) {
       // Signed in
       const user = userCredential.user;
       UID = user.uid;
+
       addUserToDB(info, UID);
     })
     .catch((error) => {
@@ -45,6 +54,7 @@ export function signIn(info) {
   const auth = getAuth();
   const email = info.email;
   const password = info.password;
+  const username = info.username;
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -52,7 +62,8 @@ export function signIn(info) {
       console.log("Signed in as" + user.uid);
     })
     .catch((error) => {
-      //const errorCode = error.code;
+      const errorCode = error.code;
       //const errorMessage = error.message;
+      console.log(errorCode);
     });
 }
