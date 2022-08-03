@@ -1,3 +1,5 @@
+import { addUserToDB } from "./Database";
+//Import firebase info
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -6,6 +8,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword
 } from "firebase/auth";
+//Setup firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyB5j6O2L0SZujZc61syiOR-AwtxZsXMx4U",
   authDomain: "login-page-8a7df.firebaseapp.com",
@@ -16,27 +19,26 @@ const firebaseConfig = {
   measurementId: "G-NXD53KFJHF",
   databaseURL: "https://login-page-8a7df-default-rtdb.firebaseio.com/"
 };
+//Initialize Firebase info
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-export async function createUser(info) {
+export function createUser(info) {
   const auth = getAuth();
   const email = info.email;
   const password = info.password;
   let UID;
-  await createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       UID = user.uid;
-      //console.log(UID);
+      addUserToDB(info, UID);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      return null;
     });
-  return UID;
 }
 
 export function signIn(info) {
@@ -52,6 +54,5 @@ export function signIn(info) {
     .catch((error) => {
       //const errorCode = error.code;
       //const errorMessage = error.message;
-      console.log(null);
     });
 }

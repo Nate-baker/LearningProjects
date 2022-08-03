@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { signIn, createUser } from "./Auth";
-import { addUserToDB } from "./Database";
 
 export default function AccountInfo() {
   const [userData, setUserData] = useState({});
@@ -17,9 +16,7 @@ export default function AccountInfo() {
     signIn(userData);
   }
   function createNewUser() {
-    const UID = createUser(userData);
-    console.log(UID);
-    //addUserToDB(userData, UID);
+    createUser(userData);
   }
 
   return (
