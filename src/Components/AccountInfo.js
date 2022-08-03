@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { signIn, createUser } from "./Auth";
 
-export default function AccountInfo() {
+export default function AccountInfo({ setUser }) {
   const [userData, setUserData] = useState({});
 
   function changeUserData(el) {
@@ -13,10 +13,10 @@ export default function AccountInfo() {
   }
 
   function signUserIn() {
-    signIn(userData);
+    signIn(userData, setUser);
   }
   function createNewUser() {
-    createUser(userData);
+    createUser(userData, setUser);
   }
 
   return (

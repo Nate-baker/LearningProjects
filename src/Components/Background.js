@@ -1,8 +1,8 @@
 import InfoBox from "./InfoBox";
-export default function Background() {
+export default function Background({ setUser }) {
   return (
     <div className="background">
-      <InfoBox />
+      <InfoBox setUser={setUser} />
     </div>
   );
 }

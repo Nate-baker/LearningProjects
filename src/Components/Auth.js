@@ -30,7 +30,7 @@ const analytics = getAnalytics(app);
 //<--------------------------->
 //<--------------------------->
 
-export function createUser(info) {
+export function createUser(info, setUser) {
   const auth = getAuth();
   const username = info.username;
   const email = info.email;
@@ -43,6 +43,12 @@ export function createUser(info) {
       UID = user.uid;
 
       addUserToDB(info, UID);
+      setUser({
+        username: username,
+        passsword: password,
+        email: email,
+        UID: UID
+      });
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -50,16 +56,25 @@ export function createUser(info) {
     });
 }
 
-export function signIn(info) {
+export function signIn(info, setUser) {
   const auth = getAuth();
   const email = info.email;
   const password = info.password;
   const username = info.username;
+  let UID;
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      UID = user.UID;
+
       console.log("Signed in as" + user.uid);
+      setUser({
+        username: username,
+        passsword: password,
+        email: email,
+        UID: UID
+      });
     })
     .catch((error) => {
       const errorCode = error.code;
