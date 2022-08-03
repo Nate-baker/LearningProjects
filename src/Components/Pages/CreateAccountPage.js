@@ -1,4 +1,4 @@
 import Background from "../Background";
-export default function SignInPage(props) {
+export default function SignInPage() {
   return <Background />;
 }
