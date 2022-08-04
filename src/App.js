@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="App">
       {user && user.username ? (
-        <h1>LOGGED IN AS {user.username}</h1>
+        <LoginPage user={user} />
       ) : (
         <CreateAccountPage setUser={setUser} />
       )}

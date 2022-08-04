@@ -1,8 +1,7 @@
-import Background from "../Components/Background";
-export default function LoginPage() {
+export default function LoginPage({ user }) {
   return (
     <div>
-      <Background />
+      <h1>{JSON.stringify(user, null, 2)}</h1>
     </div>
   );
 }

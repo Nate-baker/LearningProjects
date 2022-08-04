@@ -22,22 +22,26 @@ function writeDBData(path, data) {
   set(ref(db, path), data);
 }
 
-function getDBData(path) {
+export async function getUserData(UID) {
   const dbRef = ref(getDatabase());
   let val;
-  get(child(dbRef, path))
+  await get(child(dbRef, "users/" + UID))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        //console.log(snapshot.val());
         val = snapshot.val();
       } else {
-        val = null;
+        //val = null;
       }
     })
     .catch((error) => {
       console.error(error);
     });
-  return val;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve(val);
+    }, 1000);
+  });
 }
 
 export function addUserToDB(userData, UID) {
@@ -45,7 +49,8 @@ export function addUserToDB(userData, UID) {
   const email = userData.email;
   const password = userData.password;
 
-  writeDBData(`users/${username}`, {
+  writeDBData(`users/${UID}`, {
+    username: username,
     email: email,
     UID: UID,
     password: password

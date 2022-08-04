@@ -1,4 +1,4 @@
-import { addUserToDB } from "./Database";
+import { addUserToDB, getUserData } from "./Database";
 //Import firebase info
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -56,24 +56,24 @@ export function createUser(info, setUser) {
     });
 }
 
-export function signIn(info, setUser) {
+export async function signIn(info, setUser) {
   const auth = getAuth();
   const email = info.email;
   const password = info.password;
-  const username = info.username;
   let UID;
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+
+  await signInWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
       // Signed in
       const user = userCredential.user;
-      UID = user.UID;
-
-      console.log("Signed in as" + user.uid);
-      setUser({
-        username: username,
-        passsword: password,
-        email: email,
-        UID: UID
+      UID = user.uid;
+      await getUserData(UID).then((userInfo) => {
+        setUser({
+          username: userInfo.username,
+          passsword: userInfo.password,
+          email: userInfo.email,
+          UID: UID
+        });
       });
     })
     .catch((error) => {
